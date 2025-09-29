@@ -65,4 +65,32 @@ class Branch {
         //Check if distance is within threshold
         return distance < threshold;
     };
+
+    rotate(deltaAngle) {
+        //Update this branch's angle
+        this.angle += deltaAngle;
+
+        //Recalculate endpoint based on new angle
+        this.x2 = this.x1 + this.length * Math.cos(this.angle);
+        this.y2 = this.y1 + this.length * Math.sin(this.angle);
+
+        //Update all children recursively
+        this.updateChildren();
+    };
+
+    updateChildren() {
+        //loop through each child
+        for (let child of this.children) {
+            //Child starts where this branch ends
+            child.x1 = this.x2;
+            child.y1 = this.y2;
+
+            //Recalculate child's endpoint
+            child.x2 = child.x1 + child.length * Math.cos(child.angle);
+            child.y2 = child.y1 + child.length * Math.sin(child.angle);
+
+            //Recursively update grandchildren
+            child.updateChildren();
+        }
+    }
 };
