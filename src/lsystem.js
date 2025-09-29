@@ -1,6 +1,6 @@
 //L-Systems (short for Lindenmayer Systems) are a mathematical, fractal way to describe the growth of plants
 
-function generateLSystem(axiom, rules, iterations) {
+export function generateLSystem(axiom, rules, iterations) {
     let current = axiom;
 
     //Repeat for N iterations
