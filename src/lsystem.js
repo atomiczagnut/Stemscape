@@ -56,7 +56,7 @@ console.log(result);
 Expected result: FFFF+[[FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FFFF[-FFFFFF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]+FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X
 */
 
-export function parseLSystemToBranches(lSystemString, startX, startY, angle, stepLength) {
+export function parseLSystemToBranches(lSystemString, startX, startY, angleIncrement, stepLength) {
     const branches = [];
     const stack = [];
 
@@ -64,6 +64,7 @@ export function parseLSystemToBranches(lSystemString, startX, startY, angle, ste
     let y = startY;
     let currentAngle = -Math.PI / 2; //Start facing up in radians
     let generation = 0;
+    let parent = null;
 
     for (let char of lSystemString) {
         if (char === 'F') {
@@ -101,6 +102,7 @@ export function parseLSystemToBranches(lSystemString, startX, startY, angle, ste
         
         } else if (char === ']') {
             //restore state
+            const state = stack.pop();
             x = state.x;
             y = state.y;
             currentAngle = state.angle;
@@ -108,4 +110,6 @@ export function parseLSystemToBranches(lSystemString, startX, startY, angle, ste
             parent = state.parent;
         };
     };
+
+    return branches;
 };

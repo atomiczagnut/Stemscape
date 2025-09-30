@@ -1,4 +1,4 @@
-class Branch {
+export class Branch {
     constructor(x1, y1, x2, y2, angle, length, generation, parent = null) {
         this.x1 = x1;
         this.y1 = y1;
