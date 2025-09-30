@@ -11,7 +11,7 @@ export function drawLSystem(p, lSystemString, startX, startY, turnAngle, stepLen
     let stack = [];
 
     //Set up p5
-    p.angleMode(p.DEGREES);
+    p.angleMode(p.DEGREES); //Convert to Radians?  Come back after we test functionality
     p.stroke("#3BB143");
 
     //Loop through each character
