@@ -1,6 +1,6 @@
 import p5 from 'p5';
 import * as Tone from 'tone';
-import './audio.js';
+import { playBranchSound } from './audio.js';
 
 import { generateLSystem } from './lsystem.js';
 import { parseLSystemToBranches } from './lsystem.js';
@@ -51,7 +51,11 @@ const sketch = (p) => {
                 selectedBranch = branch;
                 //Calculate initial angle from branch start to mouse
                 lastMouseAngle = Math.atan2(p.mouseY - branch.y1, p.mouseX - branch.x1);
-                console.log("Selected branch!", selectedBranch);
+                
+                //Play sound for this branch!
+                playBranchSound(branch);
+                
+                console.log("Selected branch and played sound!", selectedBranch);
                 break; //Stop after finding first
             };
         };

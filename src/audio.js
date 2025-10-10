@@ -20,6 +20,6 @@ export function playBranchSound(branch) {
     // Play the note
     synth.triggerAttackRelease(frequency, duration);
 
-    console.log(`Playing branch sound: ${frequency}.toFixed(1)Hz for ${duration}s (gen ${branch.generation})`);
-    
+    console.log(`Playing branch sound: ${frequency.toFixed(1)}Hz for ${duration}s (gen ${branch.generation})`);
+
 }
