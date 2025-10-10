@@ -1,5 +1,6 @@
 import p5 from 'p5';
 import * as Tone from 'tone';
+import './audio.js';
 
 import { generateLSystem } from './lsystem.js';
 import { parseLSystemToBranches } from './lsystem.js';
@@ -77,4 +78,4 @@ const sketch = (p) => {
     }
 };
 
-new p5(sketch);
+new p5(sketch, 'p5-canvas-container');
