@@ -42,12 +42,29 @@ const sketch = (p) => {
     p.mousePressed = () => {
         console.log("Mouse clicked at", p.mouseX, p.mouseY);
         console.log("Total branches:", branches.length);
+       
         //Check which branch was clicked
         for (let branch of branches) {
-            const isNear = branch.containsPoint(p.mouseX, p.mouseY);
-            console.log("Checking branch:", branch, "Near?", isNear);
+            const isNear = branch.containsPoint(p.mouseX, p.mouseY, 10);
+            
             //if (branch.containsPoint(p.mouseX, p.mouseY)) {
             if (isNear) {
+                if (p.mouseButton === p.RIGHT) {
+                    //Right click: Prune branch
+                    branch.removeSelfAndChildren();
+                }
+
+                // Remove from main branches array if it is a root branch
+                const index = branches.indexOf(branch);
+                if (index > -1) {
+                    branches.splice(index, 1);
+                }
+
+                playPruneSound();
+                console.log("🪚 Pruned branch!");
+
+            } else {
+
                 selectedBranch = branch;
                 //Calculate initial angle from branch start to mouse
                 lastMouseAngle = Math.atan2(p.mouseY - branch.y1, p.mouseX - branch.x1);
@@ -56,9 +73,14 @@ const sketch = (p) => {
                 playBranchSound(branch);
                 
                 console.log("Selected branch and played sound!", selectedBranch);
-                break; //Stop after finding first
-            };
-        };
+                
+            }
+            break; //Stop after finding first
+        }
+
+        if (!selectedBranch) {
+            console.log("No branch found near click!");
+        }
     };
 
     p.mouseDragged = () => {

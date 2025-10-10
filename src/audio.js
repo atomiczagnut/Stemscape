@@ -23,3 +23,20 @@ export function playBranchSound(branch) {
     console.log(`Playing branch sound: ${frequency.toFixed(1)}Hz for ${duration}s (gen ${branch.generation})`);
 
 }
+
+// Synth for pruning
+export const prunesynth = new Tone.MembraneSynth({
+    pitchDecay: 0.05,
+    octaves: 4,
+    // Play with the shape
+    oscillator: { type: 'square' },
+    // This is a standard ADSR envelope
+     envelope: { attack: 0.001, decay: 0.2, sustain: 0.01, release: 0.5 }
+}).toDestination();
+
+// Function for pruning sound
+export function playPruneSound() {
+    // Low, percussive, "snip" sound
+    prunesynth.triggerAttackRelease('C2', '8n');
+    console.log("🪚 Pruning sound!");
+}

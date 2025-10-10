@@ -1,0 +1,39 @@
+{
+    "role": "A senior developer who knows a lot more than I do",
+    "task": "To write a good README for the Stemscape project",
+    "Project Overview": {
+        "one-sentence-summary": "Stemscape is an expression of music as plants experience it, through L-Systems",
+        "creating-experiences": "Stemscape is an artistic endeavor that challenges you to cultivate a plant as if it were an artistic object",
+        "people-who-would-enjoy": "Musicians, artists, students, botanists",
+    },
+    "Key Features": {
+        "interaction": "Users can grow and prune plants in real time",
+        "music": "Everything a user does generates a sound",
+        "L-Systems": "Users get to explore botany and fractal behavior",
+    },
+    "Getting started": {
+        "installation": "Stemscape is very easy to install.  Just make sure you have the dependencies",
+             "devDependencies": {
+                 "jest": "^30.2.0",
+                 "vite": "^7.1.7"},
+            "dependencies": {
+                "p5": "^2.0.5",
+                "tone": "^15.1.22"
+            },     
+        "installation steps": "Download it from GitHub, run "npm install" to get all of the dependencies, and then "npm run dev" to see what you can do!"
+    },
+    "Technical Details": {
+        "technolgies-used": "Vite, Tone.js, p5.js",
+        "L-Systems": "A brief explanation.  Plants grow in a mathematical way.  By conforming to certain rules, plants branch out just the way nature intended. Simple rules lead to complicated, fractal forms."
+    },
+    "Future Plans": {
+        "L-Systems": "By utilizing more algorithms, we can create more unique plants",
+        "Musicality": "Utilizing the unique structure of plants to design my own music is one of the reasons I am making this",
+        "Open Source Contribution": "Since we are releasing under the GNU GPL 3.0, we hope that other people will contribute to, or build from, this project",
+    },
+    "Credits": {
+        "ElektroPlankton": "That game pretty much inspired this.  I'm trying to be a little different, but I got to give credit where credit is due.",
+        "Cory Boehne": "Where would I be without this guy?  He was showing me JSON patterns last week.  The man deserves a shout out.",
+        "Jon Stach": "Also an inspiring person, and good coder.  Don't sell your self short, sir."
+    }
+}

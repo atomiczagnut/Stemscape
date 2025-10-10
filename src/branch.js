@@ -93,4 +93,18 @@ export class Branch {
             child.updateChildren();
         }
     }
+
+    // Method to remove this branch and all of its children from the tree
+    removeSelfAndChildren() {
+        // If this branch has a parent, remove this branch from the parent's children array
+        if (this.parent) {
+            const index = this.parent.children.indexOf(this);
+            if (index > -1) {
+                this.parent.children.splice(index, 1);
+            }
+        }
+
+        // Recursively remove all children
+        this.children.forEach(child => child.removeSelfAndChildren());
+    }
 };
