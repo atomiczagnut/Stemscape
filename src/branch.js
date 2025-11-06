@@ -28,8 +28,8 @@ export class Branch {
         //Cycle through the Hue in HSB color mode to create psychedelic trees!
 
         //Fade from green to brown with age
-        const green = Math.max(50, 200 - (this.generation * 20));
-        const red = this.generation * 15; //Adds brown tint
+        const red = Math.max(10, 25 - (this.generation * 10));
+        const green = this.generation * 21; //Turns from brown to green
         return [red, green, 0];
     };
 
