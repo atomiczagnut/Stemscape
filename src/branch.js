@@ -75,22 +75,25 @@ export class Branch {
         this.y2 = this.y1 + this.length * Math.sin(this.angle);
 
         //Update all children recursively
-        this.updateChildren();
+        this.updateChildren(deltaAngle);
     };
 
-    updateChildren() {
+    updateChildren(deltaAngle = 0) {
         //loop through each child
         for (let child of this.children) {
             //Child starts where this branch ends
             child.x1 = this.x2;
             child.y1 = this.y2;
 
+            //Rotate child by same amount as parent
+            child.angle += deltaAngle;
+
             //Recalculate child's endpoint
             child.x2 = child.x1 + child.length * Math.cos(child.angle);
             child.y2 = child.y1 + child.length * Math.sin(child.angle);
 
             //Recursively update grandchildren
-            child.updateChildren();
+            child.updateChildren(deltaAngle);
         }
     }
 
