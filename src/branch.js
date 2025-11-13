@@ -25,11 +25,11 @@ export class Branch {
     };
 
     getColor() {
-        //Cycle through the Hue in HSB color mode to create psychedelic trees!
+        //Trying to fix this in RGB mode
 
         //Fade from green to brown with age
-        const red = Math.max(5, 25 - (this.generation * 5));
-        const green = this.generation * 15; //Turns from brown to green
+        const red = 50; //Gives more mature branches a brown color
+        const green = 65 * (this.generation * 1.05); // Gives the younger branches a bright green color
         return [red, green, 0];
     };
 
