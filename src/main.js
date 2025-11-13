@@ -20,7 +20,7 @@ const sketch = (p) => {
     p.setup = () => {
         //Create canvas
         p.createCanvas(800, 600);
-        p.background(0);
+        p.background(135, 150, 210);
         
         //Generate and parse L-System
         const lSystemString = generateLSystem(axiom, rules, maxIterations);
@@ -30,7 +30,7 @@ const sketch = (p) => {
 
     p.draw = () => {
         //animation loop
-        p.background(0);
+        p.background(135, 150, 210);
 
         //Draw all branches
         for (let branch of branches) {

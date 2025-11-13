@@ -14,7 +14,7 @@ export class Branch {
     //Draw the branch
     draw(p) {
         p.stroke(this.getColor()); //Colors fade as branches get older
-        const weight = Math.max(1, 8 - this.generation); //Thin branches as they get older
+        const weight = Math.max(1, 7.5 - this.generation); //Thin branches as they get older
         p.strokeWeight(weight);
         p.line(this.x1, this.y1, this.x2, this.y2);
     };
@@ -28,8 +28,8 @@ export class Branch {
         //Cycle through the Hue in HSB color mode to create psychedelic trees!
 
         //Fade from green to brown with age
-        const red = Math.max(10, 25 - (this.generation * 10));
-        const green = this.generation * 21; //Turns from brown to green
+        const red = Math.max(5, 25 - (this.generation * 5));
+        const green = this.generation * 15; //Turns from brown to green
         return [red, green, 0];
     };
 
