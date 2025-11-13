@@ -11,11 +11,11 @@ document.addEventListener('click', async () => {
 
 // Function to play branch-specific sounds
 export function playBranchSound(branch) {
-    // Map branch angle to frequency (200Hz to 800Hz)
-    const frequency = 200 + (Math.abs(branch.angle) / Math.PI) * 600;
+    // Map branch angle to frequency (100Hz to 600Hz)
+    const frequency = 100 + (Math.abs(branch.angle) / Math.PI) * 500;
 
     // Map generation to note duration (deeper = longer notes)
-    const duration = Math.max(0.1, 0.8 - (branch.generation * 0.1));
+    const duration = Math.max(0.1, 0.8 - (branch.generation * 0.2));
 
     // Play the note
     synth.triggerAttackRelease(frequency, duration);
