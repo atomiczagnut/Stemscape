@@ -14,7 +14,7 @@ export class Branch {
     //Draw the branch
     draw(p) {
         p.stroke(this.getColor()); //Colors fade as branches get older
-        const weight = Math.max(1, 8 - this.generation); //Thin branches as they get older
+        const weight = Math.max(1, 7.5 - this.generation); //Thin branches as they get older
         p.strokeWeight(weight);
         p.line(this.x1, this.y1, this.x2, this.y2);
     };
@@ -25,11 +25,11 @@ export class Branch {
     };
 
     getColor() {
-        //Cycle through the Hue in HSB color mode to create psychedelic trees!
+        //Trying to fix this in RGB mode
 
         //Fade from green to brown with age
-        const green = Math.max(50, 200 - (this.generation * 20));
-        const red = this.generation * 15; //Adds brown tint
+        const red = 50; //Gives more mature branches a brown color
+        const green = 65 * (this.generation * 1.05); // Gives the younger branches a bright green color
         return [red, green, 0];
     };
 
@@ -75,22 +75,25 @@ export class Branch {
         this.y2 = this.y1 + this.length * Math.sin(this.angle);
 
         //Update all children recursively
-        this.updateChildren();
+        this.updateChildren(deltaAngle);
     };
 
-    updateChildren() {
+    updateChildren(deltaAngle = 0) {
         //loop through each child
         for (let child of this.children) {
             //Child starts where this branch ends
             child.x1 = this.x2;
             child.y1 = this.y2;
 
+            //Rotate child by same amount as parent
+            child.angle += deltaAngle;
+
             //Recalculate child's endpoint
             child.x2 = child.x1 + child.length * Math.cos(child.angle);
             child.y2 = child.y1 + child.length * Math.sin(child.angle);
 
             //Recursively update grandchildren
-            child.updateChildren();
+            child.updateChildren(deltaAngle);
         }
     }
 

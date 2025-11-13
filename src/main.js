@@ -1,6 +1,6 @@
 import p5 from 'p5';
 import * as Tone from 'tone';
-import { playBranchSound } from './audio.js';
+import { playBranchSound, playPruneSound } from './audio.js';
 
 import { generateLSystem } from './lsystem.js';
 import { parseLSystemToBranches } from './lsystem.js';
@@ -20,7 +20,7 @@ const sketch = (p) => {
     p.setup = () => {
         //Create canvas
         p.createCanvas(800, 600);
-        p.background(0);
+        p.background(135, 150, 210);
         
         //Generate and parse L-System
         const lSystemString = generateLSystem(axiom, rules, maxIterations);
@@ -30,7 +30,7 @@ const sketch = (p) => {
 
     p.draw = () => {
         //animation loop
-        p.background(0);
+        p.background(135, 150, 210);
 
         //Draw all branches
         for (let branch of branches) {
@@ -52,39 +52,39 @@ const sketch = (p) => {
                 if (p.mouseButton === p.RIGHT) {
                     //Right click: Prune branch
                     branch.removeSelfAndChildren();
-                }
 
-                // Remove from main branches array if it is a root branch
-                const index = branches.indexOf(branch);
-                if (index > -1) {
-                    branches.splice(index, 1);
-                }
+                    // Remove from main branches array if it is a root branch
+                    const index = branches.indexOf(branch);
+                    if (index > -1) {
+                        branches.splice(index, 1);
+                    }
 
-                playPruneSound();
-                console.log("🪚 Pruned branch!");
+                    playPruneSound();
+                        console.log("🪚 Pruned branch!");
+                    } else {
 
-            } else {
-
-                selectedBranch = branch;
-                //Calculate initial angle from branch start to mouse
-                lastMouseAngle = Math.atan2(p.mouseY - branch.y1, p.mouseX - branch.x1);
+                    selectedBranch = branch;
+                    //Calculate initial angle from branch start to mouse
+                    lastMouseAngle = Math.atan2(p.mouseY - branch.y1, p.mouseX - branch.x1);
                 
-                //Play sound for this branch!
-                playBranchSound(branch);
+                    //Play sound for this branch!
+                    playBranchSound(branch);
                 
-                console.log("Selected branch and played sound!", selectedBranch);
-                
-            }
-            break; //Stop after finding first
-        }
+                    console.log("Selected branch and played sound!", selectedBranch);
+                };
+                break; //Stop after finding first
+            };
+        };
+
 
         if (!selectedBranch) {
             console.log("No branch found near click!");
-        }
+        };
     };
 
     p.mouseDragged = () => {
         if (selectedBranch) {
+            console.log("Dragging Branch:", selectedBranch);
             //Calculate new angle from branch start to mouse
             const newMouseAngle = Math.atan2(p.mouseY - selectedBranch.y1, p.mouseX - selectedBranch.x1);
 
@@ -101,7 +101,7 @@ const sketch = (p) => {
 
     p.mouseReleased = () => {
         selectedBranch = null;
-    }
+    };
 };
 
 new p5(sketch, 'p5-canvas-container');
